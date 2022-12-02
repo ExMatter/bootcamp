@@ -1,5 +1,5 @@
 #include <stdio.h>
 
 int main(){
-    printf("DAN\n");
+    printf("DN\n");
 }
