@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 void binarySearch(long long int n,long long int *hasil){
@@ -20,7 +21,7 @@ int main() {
     for(i=1;i<=testcase;i++){
     long long int hasil;
     scanf("%lld",&hasil);
-    printf("Case #%ld: ", i);
+    printf("Case #%d: ", i);
     binarySearch(0, &hasil);
     }    return 0;
 }
