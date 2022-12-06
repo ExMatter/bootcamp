@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include <ctype.h>
 
 struct Dish
 {
@@ -11,10 +11,51 @@ struct Dish
     int quant;
 };
 Dish *createDish(const char *name, int price, int quant){
-    
+    Dish *newDish = (Dish *)malloc(sizeof(Dish));
+    strcpy((*newDish).name,name);
 }
-void addDish(Dish *s){
+void addDish(){
+    int flag = 1;
 
+    while(flag == 1){
+        char name[255];
+        printf("Insert the name of the dish [Lowercase letters]: ");
+        scanf("%s", name);
+        int i = 0;
+        int upp = 0;
+        while(name[i] != '\0'){
+            if(isupper(name[i])){
+                upp = 1;
+                break;
+            } else {
+                i++;
+            }
+        }
+        if(upp == 0){
+            flag = 0;
+            
+        }
+
+    }
+    
+    int flag = 1;
+
+    while(flag == 1){
+        long int price;
+        printf("Insert the price of the dish [1000..50000]: ");
+        scanf("%ld", &price);
+        int i = 0;
+        while(name[i] != '\0'){
+            if(isupper(name[i])){
+                flag = 0;
+                break;
+            } else {
+                i++;
+            }
+        }
+    }
+    
+    printf("Insert the quantity of the dish [1..999]: 40");
 }
 void time(){
     time_t rawtime;
@@ -51,29 +92,52 @@ void detect(){
 
 }
 void mainmenu(){
-    int pick;
-    detect();
-    time();
-    printf("1. Add Dish\n");
-    printf("2. Remove Dish\n");
-    printf("3. Add Customer\n");
-    printf("4. Search Customer\n");
-    printf("5. View Warteg\n");
-    printf("6. Order\n");
-    printf("7. Payment\n");
-    printf("8. Exit Warteg\n");
-    printf(">>");
-    scanf("%d", &pick);
-    switch (pick)
+    int pick = 0;
+    while (pick == 8)
     {
-    case 1:
-        /* code */
-        break;
-    case 2:
+        detect();
+        time();
+        printf("1. Add Dish\n");
+        printf("2. Remove Dish\n");
+        printf("3. Add Customer\n");
+        printf("4. Search Customer\n");
+        printf("5. View Warteg\n");
+        printf("6. Order\n");
+        printf("7. Payment\n");
+        printf("8. Exit Warteg\n");
+        printf(">> ");
+        scanf("%d", &pick);
+        switch (pick)
+        {
+        case 1:
+            addDish();
+            break;
+        case 2:
 
-        break;
-    default:
-        break;
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
+        case 8:
+            
+            break;
+        
+        default:
+            mainmenu();
+            break;
+        }
     }
 }
 
