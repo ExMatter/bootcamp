@@ -18,8 +18,34 @@ Student *createStudent(const char *name, int age, double gpa){
     return newStudent;
 }
 
+// Student *createStudent(Student *payload){
+
+//     Student *newStudent = (Student *)malloc(sizeof(Student));
+//     strcpy((*newStudent).name,*payload->name);
+//     (*newStudent).age = payload->name;
+//     (*newStudent).gpa = payload->name;
+//     return newStudent;
+// }
+void readStudent(Student *s){
+    printf("Name: %s\n", s->name);
+    printf("Age: %d\n", s->age);
+    printf("GPA: %.2lf\n", s->gpa);
+}
+
+void updateViaSwap (int *a, int *b){
+    int temp = *a;
+    *a =*b;
+    *b = temp;
+}
+void updateStudent(){
+
+}
 int main(){
     Student *r = createStudent("Budi", 19, 3.97);
-    printf("Nama saya %s, saya berumur %d tahun dan meiliki GPA sebesar: %.2lf\n", r->name, r->age, r->gpa);
+    int agen = 11;
+    readStudent(r);
+    updateViaSwap(&r->age, &agen);
+    readStudent(r);
+    printf("Nama saya %s, saya berumur %d tahun dan memiliki GPA sebesar: %.2lf\n", r->name, r->age, r->gpa);
     return 0;
 }
