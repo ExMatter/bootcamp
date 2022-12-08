@@ -4,21 +4,31 @@
 #include <time.h>
 #include <ctype.h>
 
-struct Dish
+struct DishList
 {
     char name[255];
     int price;
     int quant;
-};
-Dish *createDish(const char *name, int price, int quant){
-    Dish *newDish = (Dish *)malloc(sizeof(Dish));
+    DishList *dish;
+} *prev, *next;
+
+DishList *createDish(const char *name, int price, int quant){
+    DishList *newDish = (DishList *)malloc(sizeof(DishList));
     strcpy((*newDish).name,name);
+    newDish->price = price;
+    newDish->quant = quant;
+    newDish -> dish = NULL;
+    return newDish;
 }
+
 void addDish(){
+    char name[255];
+    int price;
+    int quant;
     int flag = 1;
 
     while(flag == 1){
-        char name[255];
+        name[255] = {0};
         printf("Insert the name of the dish [Lowercase letters]: ");
         scanf("%s", name);
         int i = 0;
@@ -33,9 +43,7 @@ void addDish(){
         }
         if(upp == 0){
             flag = 0;
-            
         }
-
     }
     
     int flag = 1;
@@ -44,18 +52,24 @@ void addDish(){
         long int price;
         printf("Insert the price of the dish [1000..50000]: ");
         scanf("%ld", &price);
-        int i = 0;
-        while(name[i] != '\0'){
-            if(isupper(name[i])){
-                flag = 0;
-                break;
-            } else {
-                i++;
-            }
+        
+        if(price >= 1000 && price <= 50000){
+            flag = 0;
         }
     }
-    
-    printf("Insert the quantity of the dish [1..999]: 40");
+
+    int flag = 1;
+
+    while(flag == 1){
+        int quant;
+        printf("Insert the quantity of the dish [1..999]: ");
+        scanf("%d", &quant);
+        
+        if(price >= 1 && price <= 999){
+            flag = 0;
+        }
+    }
+    createDish(name, price, quant);
 }
 void time(){
     time_t rawtime;
@@ -93,7 +107,7 @@ void detect(){
 }
 void mainmenu(){
     int pick = 0;
-    while (pick == 8)
+    while (pick != 8)
     {
         detect();
         time();
